@@ -13,18 +13,17 @@ export class AppComponent {
 
   constructor(public usersService: UsersService) {
     this.users = this.usersService.getUsers();
-  }
+  };
   @ViewChild('popUp', { read: ViewContainerRef })
-  private viewRef!: ViewContainerRef
-  private componentRef!: ComponentRef<PopUpComponent>
+  private viewRef!: ViewContainerRef;
+  private componentRef!: ComponentRef<PopUpComponent>;
 
   showPopUp() {
-    // console.log(this.viewRef.createComponent(PopUpComponent));
     this.componentRef = this.viewRef.createComponent(PopUpComponent);
     this.componentRef.instance.name = this.usersService.group;
     this.componentRef.instance.members = this.users.length;
 
-    this.componentRef.instance.close.subscribe(()=>{this.viewRef.clear()})
-  }
+    this.componentRef.instance.close.subscribe(() => { this.viewRef.clear() });
+  };
 
-}
+};
